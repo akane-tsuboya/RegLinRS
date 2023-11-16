@@ -4,11 +4,7 @@
 from sim.real_sim import ContextualBanditSimulator
 from bandit.contextual_bandit import ContextualBandit
 from policy.linucb import LinUCB
-from policy.lints import LinTS
-from policy.linear_full_posterior_sampling import LinearTS
 from policy.linear_full_posterior_sampling_fixed import LinearTSfixed
-from policy.linrs import LinRS
-from policy.linrs_stable import StableLinRS
 from policy.regional_linrs import RegionalLinRS
 from policy.uniform import Uniform
 from policy.greedy import Greedy
@@ -29,36 +25,18 @@ def main():
         policy_list(list[str]) : 検証する方策クラスをまとめたリスト
         bandit : バンディット環境
         bs : バンディットシュミレーター
-        data_type(str) : データの種類[mushroom, financial, jester, 
-                                        artificial_0.5, artificial_0.7, artificial_0.9, 
-                                        mixed_artificial_0.5, mixed_artificial_0.7, mixed_artificial_0.9]
+        data_type(str) : データの種類[artificial_0.55, artificial_0.75, artificial_0.95, 
+                                        mixed_artificial_0.55, mixed_artificial_0.75, mixed_artificial_0.95]
     """
 
     n_contexts =100000
-    #data_type = 'mushroom'
-    #data_type = 'financial'
-    #data_type = 'jester'
-    #data_type = 'artificial_0.7'
-    data_type = 'mixed_artificial_0.7'
-    
-
+    data_type = 'mixed_artificial_0.75'
     num_actions, context_dim = ContextData.get_data_info(data_type)
 
     N_SIMS = 100
     N_STEPS = n_contexts
-
     N_ARMS = num_actions
     N_FEATURES = context_dim
-
-    #Mushroom
-    """policy_list = [LinUCB(n_arms=N_ARMS, n_features=N_FEATURES, warmup=10, batch_size=20, alpha=0.1)
-                , LinearTSfixed(n_arms=N_ARMS, n_features=N_FEATURES, warmup=10, batch_size=20, lambda_prior=0.25, a0=6, b0=6)
-                , Stablefixed(n_arms=N_ARMS, n_features=N_FEATURES, warmup=10, batch_size=20,n_steps=N_STEPS, aleph=0.4,eta=0.1)]"""
-
-    #Jester
-    """policy_list = [LinUCB(n_arms=N_ARMS, n_features=N_FEATURES, warmup=10, batch_size=20, alpha=0.1)
-                , LinearTSfixed(n_arms=N_ARMS, n_features=N_FEATURES, warmup=10, batch_size=20, lambda_prior=0.25, a0=6, b0=6)
-                , Stable(n_arms=N_ARMS, n_features=N_FEATURES, warmup=10, batch_size=20,n_steps=N_STEPS, aleph=0.2,eta=0.01)]"""
 
     #artificial
     policy_list = [RegionalLinRS(n_arms=N_ARMS, n_features=N_FEATURES, warmup=10, batch_size=20, aleph=0.6, k = 50, memory_capacity = 10000, zeta = 0.008, epsilon = 0.0001)
