@@ -1,0 +1,15 @@
+# run: conda env create --file config.yml
+name: reglinrs-bandit
+channels:
+- anaconda
+- conda-forge
+dependencies:
+- python>=3.7
+- numpy
+- tensorflow
+- typing
+- pandas
+- matplotlib
+- scikit-learn
+- scipy
+- seaborn
