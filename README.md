@@ -92,4 +92,4 @@ python plot/plot_survival_hako.py png/survival_rate/結果が入っているデ�
 
 # Author
 東京電機大学先端科学技術研究科\
-坪谷朱音(Tsuboya Akane)\
+坪谷朱音(Tsuboya Akane)
