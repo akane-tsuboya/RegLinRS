@@ -11,7 +11,7 @@ journal = {知能と情報},
 year = {2024},
 volume = {36},
 number = {1},
-pages = {501--512}
+pages = {589--600}
 }
 ```
  
